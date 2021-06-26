@@ -1,0 +1,2 @@
+﻿Operación Compilar iniciada..
+1>------ Operación Compilar iniciada: proyecto: WebAPP, configuración: Debug Any CPU ------

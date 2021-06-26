@@ -1,0 +1,95 @@
+﻿@model WebAPP.Models.VieModels.ArticuloVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+<h3 class="text-center">Crear una nueva Articulo</h3>
+
+<form method="post" asp-action=" Create" enctype="multipart/form-data">
+
+    <div class="row px-2 ax-2 mx-4 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-10 offset-1 mt-4">
+
+            <div class="form-group row">
+
+                <div class="col-4">
+                    <label asp-for="Articulo.Nombre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Articulo.Nombre" class="form-control" />
+                    <span asp-validation-for="Articulo.Nombre" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-4">
+                    <label asp-for="Articulo.Descripcion"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Articulo.Descripcion" class="form-control" style="height:250px;"> </textarea>
+                    <span asp-validation-for="Articulo.Descripcion" class="text-danger"></span>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-4">
+                    <label asp-for="Articulo.CategoriaID"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Articulo.CategoriaID, Model.Listacategoria,
+                   "-por favor seleccione una categoria-", new { @class = "Form-control" })
+
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-4">
+                    <label asp-for="Articulo.UrlImagen"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="ARCHIVOS" id="subidaarchivo " class="form-control" />
+
+
+                </div>
+            </div>
+
+           
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    <partial name="_VistaCrearVolver" />
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+</form>
+
+
+
+@section Scripts{
+
+    <script src="https://cdn.tiny.cloud/1/cskqtvyl6tc6mrs11c4hvvqdupdsit1wys9qmtri1m5qkx70/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+            toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+            toolbar_mode: 'floating',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+        });
+    </script>
+}

@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Slaider</h2>
+        </div>
+
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus">Crear Nuevo Slaiders</i></a>
+        </div>
+    </div>
+
+
+    <br />
+    <br />
+    <div class="table-responsive">
+
+
+
+        <table id="tblslaider" class="table  table-bordered" style="width:100%;">
+
+            <thead>
+
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Stado</th>
+                    <th></th>
+
+
+                </tr>
+            </thead>
+
+        </table>
+
+
+
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/slaiders.js"></script>
+
+}
+
