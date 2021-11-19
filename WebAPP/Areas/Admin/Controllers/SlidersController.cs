@@ -2,10 +2,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using WebAPP.AccesoDatos.Data.Repository;
 using WebAPP.Models;
 
@@ -18,17 +16,17 @@ namespace WebAPP.Areas.Admin.Controllers
         private readonly IContenedorTrabajo contenedorTrabajo;
         private readonly IWebHostEnvironment webhostEnviroment;
 
-        public SlidersController( IContenedorTrabajo contenedor, IWebHostEnvironment hostEnvironment)
+        public SlidersController(IContenedorTrabajo contenedor, IWebHostEnvironment hostEnvironment)
         {
             contenedorTrabajo = contenedor;
-           webhostEnviroment = hostEnvironment;
+            webhostEnviroment = hostEnvironment;
         }
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-       
+
         public IActionResult Create()
         {
             return View();
@@ -36,7 +34,7 @@ namespace WebAPP.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create( Slider slider)
+        public IActionResult Create(Slider slider)
         {
 
             if (ModelState.IsValid)
@@ -45,32 +43,32 @@ namespace WebAPP.Areas.Admin.Controllers
                 var rutstsprincipal = webhostEnviroment.WebRootPath;
                 var archivo = HttpContext.Request.Form.Files;
 
-               
-                    string Nombrearchivo = Guid.NewGuid().ToString();
-                    var subida = Path.Combine(rutstsprincipal, @"imagenes\sliders");
-                    var esxtension = Path.GetExtension(archivo[0].FileName);
+
+                string Nombrearchivo = Guid.NewGuid().ToString();
+                var subida = Path.Combine(rutstsprincipal, @"imagenes\sliders");
+                var esxtension = Path.GetExtension(archivo[0].FileName);
 
 
-                    using (var filleStreams = new FileStream(Path.Combine(subida, Nombrearchivo + esxtension), FileMode.Create))
-                    {
-                        archivo[0].CopyTo(filleStreams);
-                    }
+                using (var filleStreams = new FileStream(Path.Combine(subida, Nombrearchivo + esxtension), FileMode.Create))
+                {
+                    archivo[0].CopyTo(filleStreams);
+                }
 
-                    slider.Urlimagen = @"\imagenes\sliders\" + Nombrearchivo + esxtension;
+                slider.Urlimagen = @"\imagenes\sliders\" + Nombrearchivo + esxtension;
 
-                    contenedorTrabajo.slider.Add(slider);
-                    contenedorTrabajo.Save();
+                contenedorTrabajo.slider.Add(slider);
+                contenedorTrabajo.Save();
 
-                    return RedirectToAction(nameof(Index));
-               
-            } 
+                return RedirectToAction(nameof(Index));
+
+            }
             return View();
         }
 
         public IActionResult Edit(int? id)
         {
 
-            if (id !=null)
+            if (id != null)
             {
                 var slider = contenedorTrabajo.slider.GetT(id.GetValueOrDefault());
                 return View(slider);
@@ -91,7 +89,7 @@ namespace WebAPP.Areas.Admin.Controllers
                 var archivo = HttpContext.Request.Form.Files;
                 var sliderdesdedb = contenedorTrabajo.slider.GetT(slider.Id);
 
-                if (archivo.Count()>0)
+                if (archivo.Count() > 0)
                 {
                     var Nombrearchivo = Guid.NewGuid().ToString();
                     var subida = Path.Combine(rutstsprincipal, @"imagenes\sliders");
@@ -135,9 +133,9 @@ namespace WebAPP.Areas.Admin.Controllers
         public IActionResult Delete(int id)
         {
             var eliminar = contenedorTrabajo.slider.GetT(id);
-            if (eliminar==null)
+            if (eliminar == null)
             {
-                return Json(new { success = false, messages="Error al borrar" }) ;
+                return Json(new { success = false, messages = "Error al borrar" });
 
 
             }

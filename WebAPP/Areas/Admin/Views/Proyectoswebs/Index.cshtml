@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebAPP.Models.Proyectoswebs>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Lista De Proyectos</h2>
+        </div>
+
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus">Agregar Nuevo Proyecto</i></a>
+        </div>
+    </div>
+
+
+    <br />
+    <br />
+    <div class="table-responsive">
+
+
+
+        <table id="tblproyecto" class="table  table-bordered" style="width:100%;">
+
+            <thead>
+
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Fecha Creacion</th>
+                    <th>
+                
+
+                </tr>
+            </thead>
+            
+        </table>
+
+
+
+    </div>
+</div>
+
+
+@section Scripts{
+       <script src="~/js/proyecto.js"></script>
+
+}
+

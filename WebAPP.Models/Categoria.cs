@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace WebAPP.Models
 {
-   public class Categoria
+    public class Categoria
     {
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Ingrese un nombre para este campo")]
-        [Display(Name ="Nombre categoria")]
+        [Required(ErrorMessage = "Ingrese un nombre para este campo")]
+        [Display(Name = "Nombre categoria")]
         public string Nombre { get; set; }
 
         [Required]

@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using WebAPP.AccesoDatos.Data.Repository;
 
 namespace WebAPP.Areas.Admin.Controllers
@@ -29,9 +25,9 @@ namespace WebAPP.Areas.Admin.Controllers
             return View(_contenedorTrabajo.usuario.GetAll(u => u.Id != usuarioactual.Value));
         }
 
-        public IActionResult Bloquear( string id)
+        public IActionResult Bloquear(string id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
 

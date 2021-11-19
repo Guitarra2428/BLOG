@@ -271,6 +271,61 @@ namespace WebAPP.AccesoDatos.Migrations
                     b.ToTable("Categorias");
                 });
 
+            modelBuilder.Entity("WebAPP.Models.Email", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Apellido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mensag")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Emails");
+                });
+
+            modelBuilder.Entity("WebAPP.Models.Proyectoswebs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoriaID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FechaCreacion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UrlImagen")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriaID");
+
+                    b.ToTable("Proyectoswebs");
+                });
+
             modelBuilder.Entity("WebAPP.Models.Slider", b =>
                 {
                     b.Property<int>("Id")
@@ -367,6 +422,15 @@ namespace WebAPP.AccesoDatos.Migrations
                 });
 
             modelBuilder.Entity("WebAPP.Models.Articulo", b =>
+                {
+                    b.HasOne("WebAPP.Models.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("CategoriaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebAPP.Models.Proyectoswebs", b =>
                 {
                     b.HasOne("WebAPP.Models.Categoria", "Categoria")
                         .WithMany()

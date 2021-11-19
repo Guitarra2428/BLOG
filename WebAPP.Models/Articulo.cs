@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace WebAPP.Models
 {
 
-   public  class Articulo
+    public class Articulo
     {
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Este Campo Es Obligatorio")]
-        [Display(Name ="Nombre del articulo")]
+        [Required(ErrorMessage = "Este Campo Es Obligatorio")]
+        [Display(Name = "Nombre del articulo")]
         public string Nombre { get; set; }
-       
+
         [Required(ErrorMessage = "Este Campo Es Obligatorio")]
         [Display(Name = "Descripcion De Articulo")]
         public string Descripcion { get; set; }
@@ -30,6 +27,6 @@ namespace WebAPP.Models
         public int CategoriaID { get; set; }
 
         [ForeignKey("CategoriaID")]
-     public virtual  Categoria Categoria { get; set; }
+        public virtual Categoria Categoria { get; set; }
     }
 }

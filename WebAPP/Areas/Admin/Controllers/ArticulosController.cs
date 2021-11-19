@@ -2,10 +2,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using WebAPP.AccesoDatos.Data.Repository;
 using WebAPP.Models.VieModels;
 
@@ -17,6 +15,7 @@ namespace WebAPP.Areas.Admin.Controllers
     {
         private readonly IContenedorTrabajo _contenedorTrabajo;
         private readonly IWebHostEnvironment HostEnvironment;
+        int s = 3;
         public ArticulosController(IContenedorTrabajo trabajo, IWebHostEnvironment iwebHostEnvironment)
         {
             _contenedorTrabajo = trabajo;
@@ -26,10 +25,12 @@ namespace WebAPP.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-                   
+
 
             return View();
         }
+
+
 
         [HttpGet]
         public IActionResult Create()
@@ -94,7 +95,7 @@ namespace WebAPP.Areas.Admin.Controllers
                 Listacategoria = _contenedorTrabajo.categoria.GetListaCategoria()
             };
 
-            if (id !=null)
+            if (id != null)
             {
                 articulo.Articulo = _contenedorTrabajo.articulo.GetT(id.GetValueOrDefault());
             }
@@ -105,8 +106,8 @@ namespace WebAPP.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit( ArticuloVM articuloVM)
-        {            
+        public IActionResult Edit(ArticuloVM articuloVM)
+        {
             if (ModelState.IsValid)
             {
                 string rutaprincipal = HostEnvironment.WebRootPath;
@@ -114,7 +115,7 @@ namespace WebAPP.Areas.Admin.Controllers
 
                 var articulodb = _contenedorTrabajo.articulo.GetT(articuloVM.Articulo.Id);
 
-                if (archivo.Count()>0)
+                if (archivo.Count() > 0)
                 {
                     //editar imagen
                     string nombrearchivo = Guid.NewGuid().ToString();
@@ -138,7 +139,7 @@ namespace WebAPP.Areas.Admin.Controllers
                     articuloVM.Articulo.FechaCreacion = DateTime.Now.ToString();
 
 
-                   
+
 
 
                 }
@@ -173,7 +174,7 @@ namespace WebAPP.Areas.Admin.Controllers
                 System.IO.File.Delete(rutaimagen);
             }
 
-            if (desdeDB==null)
+            if (desdeDB == null)
             {
                 return Json(new { success = false, message = "erro borrar articulo" });
             }
@@ -190,7 +191,7 @@ namespace WebAPP.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _contenedorTrabajo.articulo.GetAll(includeProperties:"Categoria") });
+            return Json(new { data = _contenedorTrabajo.articulo.GetAll(includeProperties: "Categoria") });
         }
 
 

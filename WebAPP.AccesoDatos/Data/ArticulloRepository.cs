@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using WebAPP.AccesoDatos.Data.Repository;
 using WebAPP.Models;
 
@@ -11,7 +8,7 @@ namespace WebAPP.AccesoDatos.Data
     {
 
         private readonly ApplicationDbContext DDb;
-        public ArticuloRepository(ApplicationDbContext context):base(context)
+        public ArticuloRepository(ApplicationDbContext context) : base(context)
         {
             DDb = context;
         }

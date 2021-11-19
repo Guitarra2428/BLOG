@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WebAPP.AccesoDatos.Data.Repository;
 using WebAPP.Models;
 
@@ -12,7 +10,7 @@ namespace WebAPP.AccesoDatos.Data
     {
 
         private readonly ApplicationDbContext DDb;
-        public CategoriaRepository(ApplicationDbContext context):base(context)
+        public CategoriaRepository(ApplicationDbContext context) : base(context)
         {
             DDb = context;
         }
@@ -20,8 +18,8 @@ namespace WebAPP.AccesoDatos.Data
         {
             return DDb.Categorias.Select(i => new SelectListItem()
             {
-                Text=i.Nombre,                
-                Value=i.Id.ToString()
+                Text = i.Nombre,
+                Value = i.Id.ToString()
 
             });
         }
@@ -33,6 +31,6 @@ namespace WebAPP.AccesoDatos.Data
             objDesdeDb.Orden = categoria.Orden;
 
             Db.SaveChanges();
-         }
+        }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WebAPP.Models;
 using WebAPP.Utilidades;
 
@@ -29,7 +27,7 @@ namespace WebAPP.AccesoDatos.Data.Inicializador
 
             try
             {
-                if (_db.Database.GetPendingMigrations().Count()>0)
+                if (_db.Database.GetPendingMigrations().Count() > 0)
                 {
                     _db.Database.Migrate();
                 }
@@ -37,7 +35,7 @@ namespace WebAPP.AccesoDatos.Data.Inicializador
             catch (Exception)
             {
 
-                
+
             }
 
             if (_db.Roles.Any(ro => ro.Name == CNT.Admin)) return;
@@ -47,15 +45,15 @@ namespace WebAPP.AccesoDatos.Data.Inicializador
 
             _userManager.CreateAsync(new ApplicationUser
             {
-                UserName= "Admin@Guitarra2428.com",
-                Email= "Admin@Guitarra2428.com",
-                EmailConfirmed=true,
-                Nombre="Luis"
-                
-            },"Guitarra2428@").GetAwaiter().GetResult();
+                UserName = "Admin@Guitarra2428.com",
+                Email = "Admin@Guitarra2428.com",
+                EmailConfirmed = true,
+                Nombre = "Luis"
+
+            }, "Guitarra2428@").GetAwaiter().GetResult();
 
             ApplicationUser usuario = _db.AplicationUsers
-                .Where(us => us.Email =="Admin@Guitarra2428.com").FirstOrDefault();
+                .Where(us => us.Email == "Admin@Guitarra2428.com").FirstOrDefault();
             _userManager.AddToRoleAsync(usuario, CNT.Admin).GetAwaiter().GetResult();
         }
     }

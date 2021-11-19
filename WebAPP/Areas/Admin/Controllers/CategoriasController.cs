@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebAPP.AccesoDatos.Data.Repository;
 using WebAPP.Models;
 
@@ -15,7 +11,7 @@ namespace WebAPP.Areas.Admin.Controllers
     {
         private readonly IContenedorTrabajo contenedorTrabajo;
 
-        public CategoriasController( IContenedorTrabajo trabajo)
+        public CategoriasController(IContenedorTrabajo trabajo)
         {
             contenedorTrabajo = trabajo;
 
@@ -81,7 +77,7 @@ namespace WebAPP.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new{ data = contenedorTrabajo.categoria.GetAll()});
+            return Json(new { data = contenedorTrabajo.categoria.GetAll() });
         }
 
         [HttpDelete]
@@ -89,9 +85,9 @@ namespace WebAPP.Areas.Admin.Controllers
         {
             var datos = contenedorTrabajo.categoria.GetT(id);
 
-            if (datos==null)
+            if (datos == null)
             {
-                return Json(new { success=false, message="Error borrando categoria"});
+                return Json(new { success = false, message = "Error borrando categoria" });
 
             }
 

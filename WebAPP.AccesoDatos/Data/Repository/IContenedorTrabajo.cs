@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WebAPP.AccesoDatos.Data.Repository
 {
-    public interface IContenedorTrabajo: IDisposable
+    public interface IContenedorTrabajo : IDisposable
     {
 
-        ICategoriaRepositor categoria { get;  }
+        ICategoriaRepositor categoria { get; }
         IArticuloRepository articulo { get; }
         ISliderRepository slider { get; }
         IUsuarioRepositor usuario { get; }
+        IProyectoswebs proyecto { get; }
+        IEmailRepositor GetEmail { get; }
+
 
         void Save();
     }

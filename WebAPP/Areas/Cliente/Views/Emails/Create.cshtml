@@ -1,0 +1,90 @@
+﻿@model WebAPP.Models.Email
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h1>Contacto</h1>
+
+
+<div class=" container-fluid  p-4 bg-dark " >
+
+
+
+    <div class="card  container-fluid img-fluid bg-transparent ">
+
+
+        <div class="row row-cols-1  row-cols-sm-1 row-cols-md-2 " >
+
+            <div class="col-6 p-5 text-white  text-center  ">
+                <h3 class="  show">Le responderemos lo mas pronto Posible </h3>
+                
+            </div>
+
+            <form method="post" asp-action="Create" class="col-6">
+
+                <div class="form-group row ">
+                    <div class="col-4">
+                        <label class="label-control text-white">Email:</label>
+                    </div>
+                    <div class="col-8">
+
+                        <input asp-for="Gmail" name="Gmail" class="form-control " />
+
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <div class="col-4">
+                        <label class="label-control text-white">Nombre:</label>
+                    </div>
+                    <div class="col-8">
+                        <br />
+                        <input asp-for="Nombre" name="Nombre" class="form-control   " />
+
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <div class="col-4">
+                        <label class="label-control text-white">Apellido:</label>
+                    </div>
+                    <div class="col-8">
+                        <br />
+                        <input asp-for="Apellido" name="Apellido" class="form-control " />
+
+                    </div>
+                </div>
+
+                <div class="form-group row  ">
+                    <div class="col-4">
+                        <label class="label-control text-white">Mensaje</label>
+                    </div>
+                    <div class="col-8">
+                        <br />
+                        <textarea asp-for="Mensag" class="form-control " placeholder="Escribir Mensaje" style="width:200;"></textarea>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group  ">
+                    <input type="submit" name="enviar" value="Emviar" class="btn btn-outline-primary btn-block" />
+
+                </div>
+
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+

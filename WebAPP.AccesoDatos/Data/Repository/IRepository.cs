@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace WebAPP.AccesoDatos.Data.Repository
 {
-    public interface IRepository<T> where T: class
+    public interface IRepository<T> where T : class
     {
         T GetT(int id);
 
         IEnumerable<T> GetAll(
-            Expression<Func< T, bool>>Filter=null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy =null,
-            string includeProperties=null
-            
+            Expression<Func<T, bool>> Filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            string includeProperties = null
+
             );
 
         T GetTFirstDefault(
@@ -30,4 +29,3 @@ namespace WebAPP.AccesoDatos.Data.Repository
         void Remove(T entity);
     }
 }
- 

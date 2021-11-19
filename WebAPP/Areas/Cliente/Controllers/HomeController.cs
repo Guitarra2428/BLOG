@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using WebAPP.AccesoDatos.Data.Repository;
 using WebAPP.Models;
 
@@ -25,8 +20,9 @@ namespace WebAPP.Controllers
 
             HomeVM homeVM = new HomeVM()
             {
-                Sliders= contenedorTrabajo.slider.GetAll(),
-                ListaArticulos=contenedorTrabajo.articulo.GetAll()
+                Sliders = contenedorTrabajo.slider.GetAll(),
+                ListaArticulos = contenedorTrabajo.articulo.GetAll(),
+                ListaProyecto = contenedorTrabajo.proyecto.GetAll()
 
             };
             return View(homeVM);
@@ -37,6 +33,13 @@ namespace WebAPP.Controllers
             var articulodesdeDB = contenedorTrabajo.articulo.GetTFirstDefault(a => a.Id == id);
 
             return View(articulodesdeDB);
+        }
+
+        public IActionResult ProyectoDetalles(int id)
+        {
+            var proyectodesdeDB = contenedorTrabajo.proyecto.GetTFirstDefault(a => a.Id == id);
+
+            return View(proyectodesdeDB);
         }
 
         public IActionResult Privacy()

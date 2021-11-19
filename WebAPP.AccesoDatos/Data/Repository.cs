@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using WebAPP.AccesoDatos.Data.Repository;
 
 namespace WebAPP.AccesoDatos.Data
@@ -13,7 +12,7 @@ namespace WebAPP.AccesoDatos.Data
         protected readonly DbContext Db;
         internal DbSet<T> dbSet;
 
-        public Repository( DbContext context)
+        public Repository(DbContext context)
         {
             Db = context;
             dbSet = context.Set<T>();
@@ -27,25 +26,25 @@ namespace WebAPP.AccesoDatos.Data
         {
             return dbSet.Find(id);
         }
-        public IEnumerable<T>GetAll(Expression<Func<T, bool>> Filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> Filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
-            if (Filter !=null)
+            if (Filter != null)
             {
                 query = query.Where(Filter);
             }
             //includ Properties separado por coma
 
-            if (includeProperties !=null)
+            if (includeProperties != null)
             {
-                foreach (var includproperty in includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includproperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                   query = query.Include(includproperty);
+                    query = query.Include(includproperty);
                 }
 
             }
 
-            if (orderBy !=null)
+            if (orderBy != null)
             {
                 return orderBy(query).ToList();
             }
@@ -54,7 +53,7 @@ namespace WebAPP.AccesoDatos.Data
 
         }
 
-       
+
 
         public T GetTFirstDefault(Expression<Func<T, bool>> Filter = null, string includeProperties = null)
         {
@@ -68,9 +67,9 @@ namespace WebAPP.AccesoDatos.Data
 
             if (includeProperties != null)
             {
-                foreach (var includproperty in includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includproperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                   query = query.Include(includproperty);
+                    query = query.Include(includproperty);
                 }
 
             }

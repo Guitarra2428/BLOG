@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace WebAPP.Models
 {
@@ -8,7 +6,7 @@ namespace WebAPP.Models
     {
         public IEnumerable<Slider> Sliders { get; set; }
         public IEnumerable<Articulo> ListaArticulos { get; set; }
-
+        public IEnumerable<Proyectoswebs> ListaProyecto { get; set; }
 
     }
 }

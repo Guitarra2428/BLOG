@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebAPP</title>
+    <title> Portafolio</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
     <script src="https://kit.fontawesome.com/ae07bfdbd4.js" crossorigin="anonymous"></script>
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
@@ -19,8 +20,10 @@
     <header>
         <div>
 
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <a class="navbar-brand" asp-area="Cliente" asp-controller="Home" asp-action="Index">BlogCore</a>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" asp-area="Cliente" asp-controller="Home" asp-action="Index">Portafolio</a>
+                <a class="navbar-brand" asp-area="Cliente" asp-controller="Emails" asp-action="Create">Contacto</a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -29,21 +32,24 @@
                     <ul class="navbar-nav mr-auto">
                         @if (User.IsInRole(CNT.Admin))
                         {
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle text-white" id="NavvarDroDONW" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Contenido
-                            </a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle text-white" id="NavvarDroDONW" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Contenido
+                                </a>
 
-                            <div class="dropdown-menu" aria-labelledby="NavvarDroDONW">
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Categorias" asp-action="Index">Categoria</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Articulos" asp-action="Index">Articulos</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Sliders" asp-action="Index">Slaider</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Usuarios" asp-action="Index">Usuario</a>
+                                <div class="dropdown-menu" aria-labelledby="NavvarDroDONW">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Categorias" asp-action="Index">Categoria</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Articulos" asp-action="Index">Proyecto Db</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Proyectoswebs" asp-action="Index">Proyectos Web</a>
 
-                            </div>
-                        </li>
-                        }
-                        
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Sliders" asp-action="Index">Slaider</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Usuarios" asp-action="Index">Usuario</a>
+                                    <a class="dropdown-item" asp-area="Cliente" asp-controller="Emails" asp-action="Index">Contacto</a>
+
+                                </div>
+                            </li>
+                        } 
+
 
                     </ul>
 
@@ -65,10 +71,13 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="border-top footer text-muted bg-dark">
+
+        <partial name="Footer" />
+
+        @*<div class="container">
             &copy; 2021 - WebAPP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+        </div>*@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

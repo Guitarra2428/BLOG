@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 using WebAPP.Models;
 using WebAPP.Utilidades;
 
@@ -36,7 +32,7 @@ namespace WebAPP.Areas.Identity.Pages.Account
             )
         {
             _userManager = userManager;
-            _signInManager = signInManager; 
+            _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
             roleManager = role;
@@ -66,7 +62,7 @@ namespace WebAPP.Areas.Identity.Pages.Account
             [Display(Name = "Confirmar password")]
             [Compare("Password", ErrorMessage = "La contraseña y la comfirmacion no  coinciden.")]
             public string ConfirmPassword { get; set; }
-            
+
             public string Nombre { get; set; }
             public string Direccion { get; set; }
 
@@ -89,10 +85,11 @@ namespace WebAPP.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {
+                var user = new ApplicationUser
+                {
                     UserName = Input.Email,
                     Email = Input.Email,
-                    Nombre=Input.Nombre,
+                    Nombre = Input.Nombre,
                     Direccion = Input.Direccion,
                     Ciudad = Input.Ciudad,
                     Pais = Input.Pais,
@@ -118,9 +115,9 @@ namespace WebAPP.Areas.Identity.Pages.Account
                     string rol = Request.Form["radUsuarioRole"].ToString();
 
                     //validamos si el rol es admin y si lo es lo agregamos
-                    if (rol==CNT.Admin)
+                    if (rol == CNT.Admin)
                     {
-                        await _userManager.AddToRoleAsync(user,CNT.Admin);
+                        await _userManager.AddToRoleAsync(user, CNT.Admin);
                     }
                     else
                     {
